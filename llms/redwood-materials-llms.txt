@@ -1,0 +1,57 @@
+# Redwood Materials
+
+> Redwood Materials is a Carson City, Nevada battery materials company founded in 2017 by former Tesla CTO JB Straubel. It operates a domestic circular supply chain for lithium-ion batteries — collecting and recycling end-of-life EV, consumer, micromobility and stationary-storage batteries, refining the recovered lithium, nickel, cobalt and copper, and remanufacturing anode copper foil and cathode active material for North American cell producers. Through Redwood Energy it also deploys second-life battery energy storage systems for data centers and the grid.
+
+## API surface
+
+Redwood Materials publishes **no public developer API**. As of 2026-08-02 there is no OpenAPI or
+Swagger definition, no GraphQL endpoint, no MCP server, no A2A agent card, no AsyncAPI or documented
+webhook surface, no SDK on any public package registry, and no developer portal or API reference.
+
+The only machine-facing surface is a gated partner portal at `https://portal.redwoodmaterials.com/`,
+used by automotive dismantlers and OEM dealers to price and request pickup of end-of-life EV and
+hybrid battery packs. It authenticates through AWS Cognito (us-west-2) and is backed by a private,
+Cognito-authorized AWS API Gateway endpoint that returns `403 Missing Authentication Token` to
+anonymous callers. That backend is not documented or offered to third parties, so it is deliberately
+not catalogued as a public API.
+
+Agents should treat Redwood Materials as a **non-API company profile**: use the pages below for
+facts, and the partner or press contacts for anything transactional.
+
+## Company
+
+- [Redwood Materials](https://www.redwoodmaterials.com/): Company homepage.
+- [About](https://www.redwoodmaterials.com/about/): Vision, history, campuses, and leadership.
+- [Materials](https://www.redwoodmaterials.com/materials/): Lithium, nickel, cobalt, copper, cathode active material and anode copper foil.
+- [Redwood Energy](https://www.redwoodmaterials.com/energy/): Second-life battery energy storage systems for data centers and the grid.
+- [Locations](https://www.redwoodmaterials.com/locations/): Tahoe Campus (Northern Nevada), Carolina Campus (South Carolina), San Francisco R&D center.
+- [Resources](https://www.redwoodmaterials.com/resources/): Explainers on battery recycling, critical minerals, cathode/anode, and energy storage.
+
+## Programs
+
+- [Partner with us](https://www.redwoodmaterials.com/partner-with-us/): Battery recycling partnerships for OEMs, manufacturers, and fleets.
+- [Auto recyclers battery portal](https://www.redwoodmaterials.com/auto-recyclers-battery-portal/): Sell an end-of-life EV battery pack online; entry point for the gated partner portal.
+- [Partner portal (login)](https://portal.redwoodmaterials.com/): Authenticated partner application. AWS Cognito; no public API.
+- [Recycle with us](https://www.redwoodmaterials.com/recycle-with-us/): Consumer battery recycling program.
+- [Collection point map](https://www.redwoodmaterials.com/collection-point-map/): Where to drop off batteries.
+- [Find recycling locations](https://www.redwoodmaterials.com/resources/find-recycling-locations/): Consumer recycling location guidance.
+
+## News and careers
+
+- [News](https://www.redwoodmaterials.com/news/): Company announcements, partnerships, and funding news.
+- [Join us](https://www.redwoodmaterials.com/join/): Careers.
+- [GitHub organization](https://github.com/redwoodmaterials): Three public repositories, all forks of third-party tooling. No client libraries or API definitions.
+
+## Legal and contact
+
+- [Privacy policy](https://www.redwoodmaterials.com/privacy/)
+- [Cookie policy](https://www.redwoodmaterials.com/cookie-policy/)
+- Press: press@redwoodmaterials.com
+- Customer operations: customerops@redwoodmaterials.com
+- No published terms of service page, security policy, vulnerability disclosure program, trust center, or status page was found.
+
+## API Evangelist artifacts
+
+- [apis.yml](https://raw.githubusercontent.com/api-evangelist/redwood-materials/refs/heads/main/apis.yml): APIs.json 0.20 company index.
+- [Domain security](https://raw.githubusercontent.com/api-evangelist/redwood-materials/refs/heads/main/security/redwood-materials-domain-security.yml): Probed TLS, HSTS, DNSSEC, CAA, SPF and DMARC posture.
+- [Well-known and contract discovery](https://raw.githubusercontent.com/api-evangelist/redwood-materials/refs/heads/main/well-known/redwood-materials-well-known.yml): Full record of the negative discovery sweep across every host.

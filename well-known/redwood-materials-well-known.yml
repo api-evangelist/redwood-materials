@@ -1,0 +1,87 @@
+generated: '2026-08-02'
+method: probed
+source: live HTTP probes of every Redwood Materials host found in apis.yml
+summary: >-
+  No /.well-known/ discovery document is published on any Redwood Materials host.
+  Both hosts return clean 404s (not SPA catch-all 200s), so these are true negatives.
+  Recorded so re-runs do not re-probe blindly and so the absence is auditable.
+documents: []
+hosts:
+- host: https://www.redwoodmaterials.com
+  server: Nuxt / Storyblok, fronted by AWS CloudFront
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://portal.redwoodmaterials.com
+  server: Vike/Vite SPA behind Cloudflare; AWS Cognito (us-west-2) auth
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+x-contract-discovery:
+  performed: '2026-08-02'
+  result: none
+  note: >-
+    STEP 0b contract discovery ran in full against both hosts and every candidate
+    subdomain. Redwood Materials publishes no OpenAPI/Swagger, no GraphQL endpoint,
+    no MCP server, no A2A agent card, no llms.txt and no AsyncAPI. The only
+    machine-facing surface is a private, fully auth-gated AWS API Gateway backend
+    behind the partner portal.
+  rest_probes:
+    hosts_probed: [www.redwoodmaterials.com, portal.redwoodmaterials.com]
+    paths: [/openapi.json, /openapi.yaml, /swagger.json, /v1/openapi.json, /api-docs,
+      /api, /docs, /redoc]
+    result: all 404 (HTML shell or text/plain 404); no document parsed as OpenAPI or Swagger
+  graphql_probes:
+    paths: [/graphql]
+    result: 404 on both hosts; no GraphQL surface to introspect
+  mcp_probes:
+    result: no hosted or remote MCP server found in docs, npm, or MCP registries
+  a2a_probes:
+    paths: [/.well-known/agent-card.json, /.well-known/agent.json]
+    result: 404 on all hosts; no agent card written (search-only artifact)
+  llms_txt_probes:
+    paths: [/llms.txt]
+    result: 404 on both hosts
+  subdomain_probes:
+  - {host: api.redwoodmaterials.com, dns: NXDOMAIN}
+  - {host: developer.redwoodmaterials.com, dns: NXDOMAIN}
+  - {host: docs.redwoodmaterials.com, dns: NXDOMAIN}
+  - {host: partners.redwoodmaterials.com, dns: NXDOMAIN}
+  - {host: app.redwoodmaterials.com, dns: NXDOMAIN}
+  - {host: trust.redwoodmaterials.com, dns: NXDOMAIN}
+  - {host: status.redwoodmaterials.com, dns: NXDOMAIN}
+  - {host: careers.redwoodmaterials.com, dns: NXDOMAIN}
+  - {host: portal.redwoodmaterials.com, dns: resolves, http_status: 200, kind: gated partner portal}
+  private_backend:
+    base_url: https://portal.redwoodmaterials.com/api/cp
+    kind: AWS API Gateway (us-west-2), Cognito-authorized
+    discovered_in: portal JS bundle /assets/chunks/chunk-p9jcU1D8.js
+    spec_probes:
+    - {path: /api/cp/openapi.json, status: 403, body: '{"message":"Missing Authentication Token"}'}
+    - {path: /api/cp/swagger.json, status: 403, body: '{"message":"Missing Authentication Token"}'}
+    - {path: /api/cp/openapi, status: 403, body: explicit deny in identity-based policy}
+    public: false
+    note: >-
+      Private backend for Redwood's own partner-portal web app. Not documented, not
+      offered to third parties, and no spec is retrievable anonymously. Deliberately
+      NOT registered as an apis[] entry — cataloguing it would misrepresent a private
+      internal endpoint as a public API.
+  github_org:
+    url: https://github.com/redwoodmaterials
+    public_repos: 3
+    result: >-
+      No first-party API, SDK, or .proto. The three public repos are a fork of
+      wait-for-netlify-action, a fork of community.zabbix (Ansible), and a fork of
+      streamlit_highcharts — internal tooling forks, not client libraries.
+  registries:
+    npm: no first-party @redwood* / redwood-materials package (RedwoodJS is an unrelated project)
+    pypi: {package: redwood-materials, status: 404}

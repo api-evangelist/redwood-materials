@@ -1,17 +1,39 @@
 aid: redwood-materials
 name: Redwood Materials
-description: 'Redwood Materials is a company surfaced via the API Evangelist harvest backlog (source:
-  secondary-market) and added to the network as a stub for full-pipeline profiling.'
+description: 'Redwood Materials is a Carson City, Nevada battery materials company founded
+  in 2017 by former Tesla CTO JB Straubel. It operates a domestic circular supply chain
+  for lithium-ion batteries: collecting and recycling end-of-life EV, consumer, micromobility
+  and stationary-storage batteries, refining the recovered lithium, nickel, cobalt and
+  copper, and remanufacturing anode copper foil and cathode active material for North
+  American cell producers. Through Redwood Energy it also deploys second-life battery
+  energy storage systems for data centers and the grid. Redwood runs the Tahoe Campus
+  in Northern Nevada, the Carolina Campus outside Charleston, South Carolina, and an
+  R&D center in San Francisco, and works with Panasonic, Toyota, GM, BMW, VW/Audi, Rivian,
+  Caterpillar, Isuzu and Lime. Redwood publishes no public developer API, OpenAPI, SDK
+  or MCP server; its only machine-facing surface is a gated AWS Cognito partner portal
+  used by automotive dismantlers to price and sell end-of-life battery packs.'
+image: https://a.storyblok.com/f/170040/3840x2160/8b86e266ab/battery_packs_2.png/m/1200x630
 url: https://raw.githubusercontent.com/api-evangelist/redwood-materials/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enriched-no-public-api
+x-api-surface: none
 specificationVersion: '0.20'
 created: '2026-08-02'
 modified: '2026-08-02'
 tags:
 - Company
+- Battery Recycling
+- Critical Minerals
+- Energy Storage
+- Electric Vehicles
+- Circular Economy
+- Manufacturing
+- Supply Chain
+- Sustainability
+- Cleantech
+- Materials
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -19,5 +41,44 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/redwood-materials-domain-security.yml
+- type: LLMsTxt
+  url: llms/redwood-materials-llms.txt
 - type: Website
+  url: https://www.redwoodmaterials.com/
+- type: About
+  url: https://www.redwoodmaterials.com/about/
+- type: News
+  url: https://www.redwoodmaterials.com/news/
+- type: Blog
+  url: https://www.redwoodmaterials.com/news/
+- type: Partners
+  url: https://www.redwoodmaterials.com/partner-with-us/
+- type: Careers
+  url: https://www.redwoodmaterials.com/join/
+- type: Login
+  name: Redwood Partner Portal (auto recyclers, AWS Cognito)
+  url: https://portal.redwoodmaterials.com/
+- type: Contact
+  url: mailto:press@redwoodmaterials.com
+- type: PrivacyPolicy
+  url: https://www.redwoodmaterials.com/privacy/
+- type: GitHubOrganization
+  url: https://github.com/redwoodmaterials
+- type: LinkedIn
+  url: https://www.linkedin.com/company/redwood-materials/
+- type: Twitter
+  url: https://twitter.com/RedwoodMat/
+- type: Instagram
+  url: https://www.instagram.com/redwoodmaterials/
+- type: Sustainability
+  url: https://www.redwoodmaterials.com/materials/
+- type: Investors
+  name: Forge Global secondary-market listing
   url: https://forgeglobal.com/redwood-materials_stock/
+x-enrichment:
+  date: '2026-08-02'
+  status: minimal
+  artifacts_added: 3
+  pass: local-v1
