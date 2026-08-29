@@ -12,6 +12,17 @@ description: 'Redwood Materials is a Carson City, Nevada battery materials compa
   Caterpillar, Isuzu and Lime. Redwood publishes no public developer API, OpenAPI, SDK
   or MCP server; its only machine-facing surface is a gated AWS Cognito partner portal
   used by automotive dismantlers to price and sell end-of-life battery packs.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://a.storyblok.com/f/170040/3840x2160/8b86e266ab/battery_packs_2.png/m/1200x630
 url: https://raw.githubusercontent.com/api-evangelist/redwood-materials/refs/heads/main/apis.yml
 x-type: company
